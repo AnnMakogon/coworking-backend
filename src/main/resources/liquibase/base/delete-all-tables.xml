@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet id="delete-all-records" author="Ann" runOnChange="true">
+        <sql>
+            TRUNCATE TABLE bookings RESTART IDENTITY CASCADE;
+            TRUNCATE TABLE castomers RESTART IDENTITY CASCADE;
+            TRUNCATE TABLE credentials RESTART IDENTITY CASCADE;
+            TRUNCATE TABLE managers RESTART IDENTITY CASCADE;
+            TRUNCATE TABLE tables RESTART IDENTITY CASCADE;
+            TRUNCATE TABLE workspaces RESTART IDENTITY CASCADE;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

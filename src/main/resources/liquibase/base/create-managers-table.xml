@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="create-manager_seq" author="Ann" runOnChange="true">
+        <createSequence cacheSize="1" cycle="false" sequenceName="manager_seq" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1"  startValue="1"/>
+    </changeSet>
+
+    <changeSet id="create-manager-table-15.11:19:30" author="Ann">
+        <sql>
+            CREATE TABLE managers (
+            id BIGINT PRIMARY KEY NOT NULL DEFAULT nextval('manager_seq'),
+
+            credential_id BIGINT,
+            CONSTRAINT fk_manager_credential FOREIGN KEY (credential_id) REFERENCES credentials(id),
+            fio VARCHAR(255)
+            );
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

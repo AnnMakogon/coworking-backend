@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="create-table_seq" author="Ann" runOnChange="true">
+        <createSequence cacheSize="1" cycle="false" sequenceName="table_seq" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1"  startValue="1"/>
+    </changeSet>
+
+    <changeSet id="create-tables-table-15.11:19:30" author="Ann">
+        <sql>
+            CREATE TABLE tables (
+            id BIGINT PRIMARY KEY NOT NULL DEFAULT nextval('table_seq'),
+            number INTEGER,
+            description VARCHAR(255),
+
+            workspace_id BIGINT,
+            CONSTRAINT fk_table_workspace FOREIGN KEY (workspace_id) REFERENCES workspaces(id)
+            );
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

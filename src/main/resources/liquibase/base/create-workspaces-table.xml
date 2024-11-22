@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="create-workspace_seq" author="Ann" runOnChange="true">
+        <createSequence cacheSize="1" cycle="false" sequenceName="workspace_seq" dataType="bigint" incrementBy="1" maxValue="9223372036854775807" minValue="1"  startValue="1"/>
+    </changeSet>
+
+    <changeSet id="create-workspaces-table-15.11:19:30" author="Ann">
+        <sql>
+            CREATE TABLE workspaces (
+            id BIGINT PRIMARY KEY NOT NULL DEFAULT nextval('workspace_seq'),
+            name VARCHAR(255),
+            description VARCHAR(255),
+            schedule VARCHAR(255),
+            latitude DOUBLE PRECISION,
+            longitude DOUBLE PRECISION,
+            address VARCHAR(255),
+
+            manager_id BIGINT,
+            CONSTRAINT fk_workspace_manager FOREIGN KEY (manager_id) REFERENCES managers(id)
+            );
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

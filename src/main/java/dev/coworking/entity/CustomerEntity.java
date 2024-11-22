@@ -1,4 +1,4 @@
-package dev.coworking.Entity;
+package dev.coworking.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,8 +15,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @SequenceGenerator(name = "castomer_seq", sequenceName = "castomer_seq", allocationSize = 1)
+public class CustomerEntity {
 
-public class CastomerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "castomer_seq")
     private Long id;
