@@ -1,4 +1,4 @@
-package dev.coworking.Entity;
+package dev.coworking.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,6 +26,6 @@ public class ManagerEntity {
 
     private String fio;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "manager", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<WorkspaceEntity> workspaces;
 }

@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="castomers")
+@Table(name="customers")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -26,6 +26,6 @@ public class CustomerEntity {
 
     private String fio;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "castomer",cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BookingEntity> bookings;
 }

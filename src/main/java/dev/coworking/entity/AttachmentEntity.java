@@ -1,4 +1,4 @@
-package dev.coworking.Entity;
+package dev.coworking.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,13 +13,17 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@SequenceGenerator(name = "attachment_seq", sequenceName = "attachment_seq", allocationSize = 1)
-
+@SequenceGenerator(name = "att_seq", sequenceName = "att_seq", allocationSize = 1)
 public class AttachmentEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "attachment_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "att_seq")
     private Long id;
 
     private String photo;
+
+    public AttachmentEntity(String photo){
+        this.id = null;
+        this.photo = photo;
+    }
 }

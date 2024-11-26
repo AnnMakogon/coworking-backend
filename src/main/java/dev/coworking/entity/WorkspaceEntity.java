@@ -1,4 +1,4 @@
-package dev.coworking.Entity;
+package dev.coworking.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,7 +14,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@SequenceGenerator(name = "workspaces_seq", sequenceName = "workspaces_seq", allocationSize = 1)
+@SequenceGenerator(name = "workspace_seq", sequenceName = "workspace_seq", allocationSize = 1)
 public class WorkspaceEntity {
 
     @Id
@@ -35,4 +35,7 @@ public class WorkspaceEntity {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "workspace", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TableEntity> tables;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "manager_id")
+    private ManagerEntity manager;
 }

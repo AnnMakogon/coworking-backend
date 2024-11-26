@@ -2,19 +2,17 @@ package dev.coworking.mapper;
 
 import dev.coworking.dto.Customer;
 import dev.coworking.entity.AttachmentEntity;
-import dev.coworking.entity.CastomerEntity;
+import dev.coworking.entity.CustomerEntity;
 import org.mapstruct.*;
 
 import java.util.List;
 
-//todo убрать ignore в reportingpolitcy
-@Mapper(componentModel = MappingConstants.ComponentModel.SPRING,
-        unmappedTargetPolicy = ReportingPolicy.IGNORE)
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface CustomerMapper extends AttachmentMapper{
 
-    Customer castomerEntityToCastomer(CastomerEntity castomer);
+    Customer customerEntityToCustomer(CustomerEntity customer);
 
-    CastomerEntity castomerToCastomerEntity(Customer castomer);
+    CustomerEntity customerToCustomerEntity(Customer customer);
     String toString(AttachmentEntity attachmentEntity);
 
     @Mapping(target = "photo", source = "photo")

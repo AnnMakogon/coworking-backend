@@ -1,4 +1,4 @@
-package dev.coworking.Entity;
+package dev.coworking.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

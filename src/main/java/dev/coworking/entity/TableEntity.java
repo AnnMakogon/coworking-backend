@@ -1,4 +1,4 @@
-package dev.coworking.Entity;
+package dev.coworking.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,11 +14,11 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@SequenceGenerator(name = "tables_seq", sequenceName = "tables_seq", allocationSize = 1)
+@SequenceGenerator(name = "table_seq", sequenceName = "table_seq", allocationSize = 1)
 
 public class TableEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tables_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "table_seq")
     private Long id;
 
     private Integer number;

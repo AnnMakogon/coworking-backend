@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Castomer {
+public class Customer {
     private Long id;
 
     private Credential credential;

@@ -1,4 +1,4 @@
-package dev.coworking.Entity;
+package dev.coworking.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,7 +28,7 @@ public class BookingEntity {
     private TableEntity table;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "castomer_id")
-    private CastomerEntity castomer;
+    @JoinColumn(name = "customer_id")
+    private CustomerEntity customer;
 
 }

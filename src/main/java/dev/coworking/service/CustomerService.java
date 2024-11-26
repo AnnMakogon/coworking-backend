@@ -1,33 +1,35 @@
 package dev.coworking.service;
 
 import dev.coworking.dto.Customer;
-import dev.coworking.mapper.CastomerMapper;
-import dev.coworking.repository.CastomerRepository;
+import dev.coworking.mapper.CustomerMapper;
+import dev.coworking.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 @Slf4j
 @RequiredArgsConstructor
-//todo castomer на customer
 public class CustomerService {
 
-    private final CastomerRepository castomerRepository;
-    private final CastomerMapper castomerMapper;
+    private final CustomerRepository customerRepository;
+    private final CustomerMapper customerMapper;
 
     @Transactional
-    //todo handle exception in controller adivce (404)
     public Customer getPersInfo(Long id){
-        return castomerMapper.castomerEntityToCastomer(
-                castomerRepository.findById(id).get());
+        return customerMapper.customerEntityToCustomer(
+                customerRepository.findById(id).orElseThrow(() ->
+                        new ResponseStatusException( HttpStatus.NOT_FOUND, "Customer not found")));
     }
 
     @Transactional
-    public void updateCastomer(Customer newCastomer){
-        castomerRepository.save(
-                castomerMapper.castomerToCastomerEntity(newCastomer));
+    public Customer updateCustomer(Customer changingCustomer){
+        customerRepository.save(
+                customerMapper.customerToCustomerEntity(changingCustomer));
+        return changingCustomer;
     }
 
 

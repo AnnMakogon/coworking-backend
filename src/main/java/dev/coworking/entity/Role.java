@@ -1,6 +1,6 @@
-package dev.coworking.Entity;
+package dev.coworking.entity;
 
 public enum Role {
-    CASTOMER,
+    CUSTOMER,
     MANAGER
 }

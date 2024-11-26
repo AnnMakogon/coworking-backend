@@ -1,4 +1,4 @@
-package dev.coworking.Entity;
+package dev.coworking.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,5 +28,4 @@ public class CredentialEntity {
 
     @Enumerated(EnumType.STRING)
     private Role role;
-
 }
