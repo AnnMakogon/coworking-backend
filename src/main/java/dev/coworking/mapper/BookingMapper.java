@@ -1,23 +1,16 @@
 package dev.coworking.mapper;
 
 import dev.coworking.dto.Booking;
-import dev.coworking.entity.AttachmentEntity;
 import dev.coworking.entity.BookingEntity;
-import org.mapstruct.*;
+import org.mapstruct.Context;
+import org.mapstruct.Mapper;
+import org.mapstruct.MappingConstants;
+import org.springframework.context.annotation.Lazy;
 
-import java.util.List;
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING, uses = { CustomerMapper.class, TableMapper.class})
+public interface BookingMapper {
 
-@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
-public interface BookingMapper extends AttachmentMapper{
+    BookingEntity bookingToBookingEntity(Booking booking, @Context TableMapper tableMapper);
+    Booking bookingEntityToBooking(BookingEntity booking, @Context TableMapper tableMapper);
 
-    BookingEntity bookingToBookingEntity(Booking booking);
-    Booking bookingEntityToBooking(BookingEntity booking);
-
-    String toString(AttachmentEntity attachmentEntity);
-
-    @Mapping(target = "photo", source = "photo")
-    AttachmentEntity toEntity(String photo);
-
-    List<String> listToString(List<AttachmentEntity> attachmentEntities);
-    List<AttachmentEntity> listToAttachment(List<String> strings);
 }

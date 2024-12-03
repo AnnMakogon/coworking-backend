@@ -3,14 +3,16 @@ package dev.coworking.mapper;
 import dev.coworking.dto.Workspace;
 import dev.coworking.entity.WorkspaceEntity;
 import org.mapstruct.*;
+import org.springframework.context.annotation.Primary;
 
-@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
-public interface WorkspaceMapper extends AttachmentMapper {
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING, uses = {TableMapper.class, AttachmentMapper.class})
+public interface WorkspaceMapper {
 
-    @Mapping(target = "tables", source = "tables")
+    @Mapping(target = "tables", ignore = true)
+    @Mapping(target = "attachments", ignore = true)
     Workspace workspaceEntityToWorkspace(WorkspaceEntity workspace);
 
-    @Mapping(target = "tables", source = "tables")
+    @Mapping(target = "tables", ignore = true)
     WorkspaceEntity workspaceToWorkspaceEntity(Workspace workspace);
 
 }

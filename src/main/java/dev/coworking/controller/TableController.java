@@ -18,17 +18,17 @@ public class TableController {
     private final TableService tableService;
 
     //получение столов по id рабочего пространства
-    @GetMapping(value = "tableGet/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "table/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public List<Table> getTable(@PathVariable("id") Long id){
         return tableService.getTable(id);
     }
 
-    @PutMapping(value = "tablePut", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "table", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateTable(@RequestBody Table newTable){
         tableService.updateTable(newTable);
     }
 
-    @DeleteMapping(value = "tableDel/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "table/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void deleteTable(@PathVariable("id")Long id){
         tableService.deleteTable(id);
     }

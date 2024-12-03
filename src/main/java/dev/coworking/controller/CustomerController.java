@@ -1,6 +1,5 @@
 package dev.coworking.controller;
 
-import com.sun.istack.NotNull;
 import dev.coworking.dto.Customer;
 import dev.coworking.service.CustomerService;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +21,7 @@ public class CustomerController {
     }
 
     @GetMapping(value = "customer/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Customer getPersInfo(@PathVariable("id") @NotNull Long id){
+    public Customer getPersInfo(@PathVariable("id") Long id){
         return customerService.getPersInfo(id);
     }
 }
