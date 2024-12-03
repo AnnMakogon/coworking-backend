@@ -7,15 +7,11 @@ import org.mapstruct.*;
 
 import java.util.List;
 
-@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
-public interface ManagerMapper extends AttachmentMapper{
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING, uses = {WorkspaceMapper.class})
+public interface ManagerMapper{
 
     Manager managerEntityToManager (ManagerEntity managerEntity);
 
     ManagerEntity managerToManagerEntity(Manager manager);
-    String toString(AttachmentEntity attachmentEntity);
-
-    List<String> listToString(List<AttachmentEntity> attachmentEntities);
-    List<AttachmentEntity> listToAttachment(List<String> strings);
 
 }

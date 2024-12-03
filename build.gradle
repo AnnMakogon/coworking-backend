@@ -1,6 +1,6 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '2.7.8'
+	id 'org.springframework.boot' version '3.3.1'
 	id 'io.spring.dependency-management' version '1.1.0'
 	id 'org.liquibase.gradle' version '2.0.4'
 }
@@ -25,6 +25,7 @@ java {
 
 repositories {
 	mavenCentral()
+	jcenter()
 }
 
 dependencies {
@@ -34,17 +35,27 @@ dependencies {
 	implementation 'org.projectlombok:lombok:1.18.28'
 	annotationProcessor 'org.projectlombok:lombok:1.18.28'
 
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation group: 'org.thymeleaf', name: 'thymeleaf', version: '2.0.5'
+	implementation 'org.springframework.boot:spring-boot-starter-security:3.4.0'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity6', version: '3.1.2.RELEASE'
+	//implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+	implementation 'org.springframework.boot:spring-boot-devtools'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
 
-	implementation group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '2.6.7'
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
 
 	implementation 'org.mapstruct:mapstruct:1.5.5.Final'
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
 	implementation 'org.postgresql:postgresql:42.5.0'
-	implementation 'org.liquibase:liquibase-core:4.4.3'
 
+	implementation 'org.liquibase:liquibase-core:4.17.0'
 
+	implementation 'jakarta.servlet:jakarta.servlet-api:6.0.0'
 
 }
 

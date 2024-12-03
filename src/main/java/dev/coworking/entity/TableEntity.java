@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
@@ -15,7 +15,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @SequenceGenerator(name = "table_seq", sequenceName = "table_seq", allocationSize = 1)
-
 public class TableEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "table_seq")

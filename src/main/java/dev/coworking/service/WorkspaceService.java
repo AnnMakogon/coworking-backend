@@ -5,6 +5,7 @@ import dev.coworking.mapper.WorkspaceMapper;
 import dev.coworking.repository.WorkspaceRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,8 +17,10 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class WorkspaceService {
 
+    @Autowired
     private final WorkspaceRepository workspaceRepository;
 
+    @Autowired
     private final WorkspaceMapper workspaceMapper;
 
     // получение рабочих пространств по id manager

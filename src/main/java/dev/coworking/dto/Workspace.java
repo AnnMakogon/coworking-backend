@@ -23,7 +23,7 @@ public class Workspace {
     private Double longitude;
     private String address;
 
-    private List<String> attachments;
+    private List<Attachment> attachments;
 
     private List<Table> tables;
 }

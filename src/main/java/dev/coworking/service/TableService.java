@@ -2,6 +2,7 @@ package dev.coworking.service;
 
 import dev.coworking.dto.Table;
 import dev.coworking.mapper.TableMapper;
+import dev.coworking.mapper.WorkspaceMapper;
 import dev.coworking.repository.TableRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,18 +19,21 @@ public class TableService {
 
     private final TableRepository tableRepository;
     private final TableMapper tableMapper;
+    private final WorkspaceMapper workspaceMapper;
 
     //получение столов по id рабочего пространства
     @Transactional
     public List<Table> getTable(Long workspaceId){
         return tableRepository.getListByWorkspace(workspaceId)
-                .stream().map(tableMapper::tableEntityToTable).collect(Collectors.toList());
+                .stream()
+                .map(tableEntity -> tableMapper.tableEntityToTable(tableEntity, workspaceMapper))
+                .collect(Collectors.toList());
     }
 
     @Transactional
     public void updateTable(Table newTable){
         tableRepository.save(
-                tableMapper.tableToTableEntity(newTable));
+                tableMapper.tableToTableEntity(newTable, workspaceMapper));
     }
 
     @Transactional
