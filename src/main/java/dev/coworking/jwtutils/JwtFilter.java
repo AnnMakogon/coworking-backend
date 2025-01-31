@@ -1,13 +1,13 @@
 package dev.coworking.jwtutils;
 
 import java.io.IOException;
+
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -33,7 +33,7 @@ public class JwtFilter extends OncePerRequestFilter {
         String token = null;
         if (tokenHeader != null && tokenHeader.startsWith("Bearer ")) {
             token = tokenHeader.substring(7);
-            try{
+            try {
                 username = tokenManager.getUsernameFromToken(token);
             } catch (IllegalArgumentException e) {
                 log.info("Unable to get JWT Token");
@@ -44,9 +44,9 @@ public class JwtFilter extends OncePerRequestFilter {
             log.info("Bearer String not found in token");
         }
 
-        if ( null != username && SecurityContextHolder.getContext().getAuthentication() == null) {
+        if (null != username && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-            if(tokenManager.validateJwtToken(token, userDetails)) {
+            if (tokenManager.validateJwtToken(token, userDetails)) {
                 UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities()
                 );
@@ -54,6 +54,6 @@ public class JwtFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(authenticationToken);
             }
         }
-        filterChain.doFilter( request, response);
+        filterChain.doFilter(request, response);
     }
 }

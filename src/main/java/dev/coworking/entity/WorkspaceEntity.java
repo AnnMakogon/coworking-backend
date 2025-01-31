@@ -6,10 +6,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="workspaces")
+@Table(name = "workspaces")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -30,10 +32,10 @@ public class WorkspaceEntity {
     private String address;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<AttachmentEntity> attachments;
+    private List<AttachmentEntity> attachments = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "workspace", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<TableEntity> tables;
+    private List<TableEntity> tables = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "manager_id")

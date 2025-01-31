@@ -4,7 +4,6 @@ import dev.coworking.dto.Manager;
 import dev.coworking.service.ManagerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.antlr.v4.runtime.misc.NotNull;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +21,7 @@ public class ManagerController {
     }
 
     @GetMapping(value = "manager/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Manager getPersInfo(@PathVariable("id") Long id){
+    public Manager getPersInfo(@PathVariable("id") Long id) {
         return managerService.getPersInfo(id);
     }
 }

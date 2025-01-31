@@ -11,7 +11,9 @@
     <include file="create-attachments-table.xml" relativeToChangelogFile="true"/>
     <include file="create-workspaces-table.xml" relativeToChangelogFile="true"/>
     <include file="create-tables-table.xml" relativeToChangelogFile="true"/>
-    <include file="create-bookings-table.xml" relativeToChangelogFile="true"/>-->
+    <include file="create-bookings-table.xml" relativeToChangelogFile="true"/>
+    <include file="base/20241206_add_column_price.xml" relativeToChangelogFile="true"/>
+    <include file="base/20250131_add_cascade_relation.xml" relativeToChangelogFile="true"/>-->
 
 
 </databaseChangeLog>

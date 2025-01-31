@@ -6,10 +6,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import jakarta.persistence.*;
+
 import java.util.List;
 
 @Entity
-@Table(name="managers")
+@Table(name = "managers")
 @Getter
 @Setter
 @NoArgsConstructor

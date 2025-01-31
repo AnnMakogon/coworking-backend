@@ -19,18 +19,16 @@ public class CustomerService {
     private final CustomerMapper customerMapper;
 
     @Transactional
-    public Customer getPersInfo(Long id){
+    public Customer getPersInfo(Long id) {
         return customerMapper.customerEntityToCustomer(
                 customerRepository.findById(id).orElseThrow(() ->
-                        new ResponseStatusException( HttpStatus.NOT_FOUND, "Customer not found")));
+                        new ResponseStatusException(HttpStatus.NOT_FOUND, "Customer not found")));
     }
 
     @Transactional
-    public Customer updateCustomer(Customer changingCustomer){
+    public Customer updateCustomer(Customer changingCustomer) {
         customerRepository.save(
                 customerMapper.customerToCustomerEntity(changingCustomer));
         return changingCustomer;
     }
-
-
 }

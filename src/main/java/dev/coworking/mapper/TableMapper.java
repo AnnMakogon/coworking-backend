@@ -1,20 +1,23 @@
 package dev.coworking.mapper;
 
 import dev.coworking.dto.Table;
-import dev.coworking.entity.AttachmentEntity;
 import dev.coworking.entity.TableEntity;
-import org.mapstruct.Context;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
-import org.springframework.context.annotation.Primary;
 
 import java.util.List;
 
-@Mapper(componentModel = MappingConstants.ComponentModel.SPRING, uses = {BookingMapper.class})
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface TableMapper {
 
-    Table tableEntityToTable (TableEntity table, @Context WorkspaceMapper workspaceMapper);
+    @Mapping(target = "bookings", ignore = true)
+    Table tableEntityToTable(TableEntity table);
 
-    TableEntity tableToTableEntity (Table table, @Context WorkspaceMapper workspaceMapper);
+    @Mapping(target = "bookings", ignore = true)
+    TableEntity tableToTableEntity(Table table);
 
+    List<Table> tableEntityListToTableList(List<TableEntity> tableEntities);
+
+    List<TableEntity> tableListToTableEntityList(List<Table> tables);
 }

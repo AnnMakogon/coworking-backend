@@ -2,6 +2,7 @@ package dev.coworking.jwtutils;
 
 import java.io.IOException;
 import java.io.Serializable;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

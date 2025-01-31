@@ -1,15 +1,15 @@
 package dev.coworking.entity;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import jakarta.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
-@Table(name="bookings")
+@Table(name = "bookings")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,7 +20,7 @@ public class BookingEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "booking_seq")
     private Long id;
 
-    private Date date;
+    private LocalDate date;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "table_id")
