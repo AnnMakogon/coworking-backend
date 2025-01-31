@@ -8,7 +8,7 @@ import lombok.Setter;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="credentials")
+@Table(name = "credentials")
 @Getter
 @Setter
 @NoArgsConstructor

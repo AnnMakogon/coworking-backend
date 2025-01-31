@@ -8,7 +8,7 @@ import lombok.Setter;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="attachments")
+@Table(name = "attachments")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -22,7 +22,7 @@ public class AttachmentEntity {
 
     private String photo;
 
-    public AttachmentEntity(String photo){
+    public AttachmentEntity(String photo) {
         this.id = null;
         this.photo = photo;
     }

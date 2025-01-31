@@ -17,5 +17,6 @@ public interface AttachmentMapper {
     AttachmentEntity toEntity(Attachment photo);
 
     List<String> listToString(List<AttachmentEntity> attachmentEntities);
+
     List<AttachmentEntity> listToAttachment(List<Attachment> strings);
 }

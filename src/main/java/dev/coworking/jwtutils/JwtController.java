@@ -1,12 +1,13 @@
 package dev.coworking.jwtutils;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,6 +35,17 @@ public class JwtController {
         }
         final UserDetails userDetails = userDetailsService.loadUserByUsername(request.getUsername());
         final String jwtToken = tokenManager.generateJwtToken(userDetails);
-        return ResponseEntity.ok(new JwtResponseModel(jwtToken));
+        return ResponseEntity.ok(new JwtResponseModel(userDetailsService.getCredentialDetails(request.getUsername()).getId(),
+                userDetailsService.getCredentialDetails(request.getUsername()).getRole().toString(), jwtToken));
     }
+
+    @PostMapping("/logout")
+    public ResponseEntity<Void> logout() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null) {
+            SecurityContextHolder.clearContext();
+        }
+        return ResponseEntity.ok().build();
+    }
+
 }

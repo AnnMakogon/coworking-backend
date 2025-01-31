@@ -48,7 +48,7 @@ public class TokenManager {
         return (username.equals(userDetails.getUsername())) && !isTokenExpired;
     }
 
-    //возвращает имя
+    //возвращает мыло
     public String getUsernameFromToken(String token) {
         final Claims claims = Jwts
                 .parserBuilder()

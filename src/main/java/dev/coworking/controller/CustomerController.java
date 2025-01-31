@@ -21,7 +21,7 @@ public class CustomerController {
     }
 
     @GetMapping(value = "customer/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Customer getPersInfo(@PathVariable("id") Long id){
+    public Customer getPersInfo(@PathVariable("id") Long id) {
         return customerService.getPersInfo(id);
     }
 }

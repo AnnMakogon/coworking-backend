@@ -5,10 +5,39 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <changeSet id="add_cascad" author="Ann" runOnChange="true">
+    <changeSet id="add-cascade-constraint-tables" author="Ann">
         <sql>
+            -- Удаляем существующее ограничение внешнего ключа
             ALTER TABLE tables
-            ADD COLUMN price DECIMAL(10, 2);
+            DROP CONSTRAINT fk_table_workspace;
+
+            -- Добавляем новое ограничение внешнего ключа с каскадным удалением
+            ALTER TABLE tables
+            ADD CONSTRAINT fk_table_workspace FOREIGN KEY (workspace_id) REFERENCES workspaces(id) ON DELETE CASCADE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="add-cascade-constraint-bookings" author="Ann">
+        <sql>
+            -- Удаляем существующее ограничение внешнего ключа для table_id
+            ALTER TABLE bookings
+            DROP CONSTRAINT fk_bookings_tables;
+
+            -- Добавляем новое ограничение внешнего ключа с каскадным удалением для table_id
+            ALTER TABLE bookings
+            ADD CONSTRAINT fk_bookings_tables FOREIGN KEY (table_id) REFERENCES tables(id) ON DELETE CASCADE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="add-cascade-constraint-attachments" author="Ann">
+        <sql>
+            -- Удаляем существующее ограничение внешнего ключа
+            ALTER TABLE attachments
+            DROP CONSTRAINT fk_attachment_workspace;
+
+            -- Добавляем новое ограничение внешнего ключа с каскадным удалением
+            ALTER TABLE attachments
+            ADD CONSTRAINT fk_attachment_workspace FOREIGN KEY (workspace_id) REFERENCES workspaces(id) ON DELETE CASCADE;
         </sql>
     </changeSet>
 

@@ -16,13 +16,13 @@ public class ManagerService {
     private final ManagerMapper managerMapper;
 
     @Transactional
-    public Manager getPersInfo(Long id){
+    public Manager getPersInfo(Long id) {
         return managerMapper.managerEntityToManager(
                 managerRepository.findById(id).get());
     }
 
     @Transactional
-    public Manager updateManager(Manager changingManager){
+    public Manager updateManager(Manager changingManager) {
         managerRepository.save(
                 managerMapper.managerToManagerEntity(changingManager));
         return changingManager;

@@ -44,7 +44,7 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    protected  PasswordEncoder passwordEncoder() {
+    protected PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -52,12 +52,14 @@ public class WebSecurityConfig {
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(request -> request.requestMatchers("/api/login").permitAll()
+                .authorizeHttpRequests(request -> request
+                        .requestMatchers("/api/login", "api/logout").permitAll()
+                        .requestMatchers("/api/workspaceManager/**", "/api/table/**",
+                                "api/bookingTable/**", "api/workspace/**", "api/bookingToCalendar/*/*/*", "api/newworkspace/**").hasAuthority("MANAGER")
                         .anyRequest().authenticated())
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(authenticationEntryPoint))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilterBefore(filter,  UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
-
 }

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @AllArgsConstructor
@@ -21,4 +22,6 @@ public class Table {
     private Workspace workspace;
 
     private List<Booking> bookings;
+
+    private BigDecimal price;
 }

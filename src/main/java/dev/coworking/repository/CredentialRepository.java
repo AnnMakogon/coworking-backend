@@ -1,6 +1,5 @@
 package dev.coworking.repository;
 
-import dev.coworking.dto.Credential;
 import dev.coworking.entity.CredentialEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -8,12 +7,14 @@ import org.springframework.data.repository.query.Param;
 
 public interface CredentialRepository extends JpaRepository<CredentialEntity, Long> {
 
+    @Query("SELECT c FROM CredentialEntity c JOIN FETCH c.password p WHERE c.email = :email")
+    CredentialEntity findCredentialByEmail(@Param("email") String email);
+
     @Query(nativeQuery = true, value = """
-            SELECT p.password
+            SELECT c.*
             FROM credentials c
-            JOIN passwords p ON c.password_id = p.id
             WHERE c.email = :email
             """)
-    String findPasswordByEmail(@Param("email") String email);
+    CredentialEntity findDetailsByEmail(@Param("email") String email);
 
 }
