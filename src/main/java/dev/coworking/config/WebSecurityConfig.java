@@ -53,9 +53,11 @@ public class WebSecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/api/login", "api/logout").permitAll()
-                        .requestMatchers("/api/workspaceManager/**", "/api/table/**",
-                                "api/bookingTable/**", "api/workspace/**", "api/bookingToCalendar/*/*/*", "api/newworkspace/**").hasAuthority("MANAGER")
+                        .requestMatchers("/api/login", "api/logout" ).permitAll()
+                        .requestMatchers("/api/workspaceManager/**", "api/bookingTable/**",
+                                "api/newworkspace/**").hasAuthority("MANAGER")
+                        .requestMatchers("api/workspace/**", "/api/table/**", "api/bookingToCalendar/*/*/*").hasAnyAuthority("CUSTOMER", "MANAGER")
+                        .requestMatchers("workspaceToMyBooking/**").hasAuthority("CUSTOMER")
                         .anyRequest().authenticated())
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(authenticationEntryPoint))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

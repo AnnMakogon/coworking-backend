@@ -21,6 +21,7 @@ liquibase {
 
 java {
 	sourceCompatibility = '19'
+	targetCompatibility = '19'
 }
 
 repositories {
@@ -55,6 +56,9 @@ dependencies {
 	implementation 'org.liquibase:liquibase-core:4.17.0'
 
 	implementation 'jakarta.servlet:jakarta.servlet-api:6.0.0'
+
+	testImplementation 'org.testcontainers:junit-jupiter:1.17.3'
+	testImplementation 'org.testcontainers:postgresql:1.17.3' // для PostgreSQL
 
 }
 

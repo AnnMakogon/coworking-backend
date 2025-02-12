@@ -2,11 +2,13 @@ package dev.coworking.service;
 
 import dev.coworking.dto.Workspace;
 import dev.coworking.dto.WorkspaceCreate;
+import dev.coworking.entity.CustomerEntity;
 import dev.coworking.entity.ManagerEntity;
 import dev.coworking.entity.TableEntity;
 import dev.coworking.entity.WorkspaceEntity;
 import dev.coworking.mapper.TableMapper;
 import dev.coworking.mapper.WorkspaceMapper;
+import dev.coworking.repository.CustomerRepository;
 import dev.coworking.repository.ManagerRepository;
 import dev.coworking.repository.WorkspaceRepository;
 import lombok.RequiredArgsConstructor;
@@ -38,15 +40,28 @@ public class WorkspaceService {
     @Autowired
     private final ManagerRepository managerRepository;
 
+    private final CustomerRepository customerRepository;
+
     // получение рабочих пространств по id manager
     @Transactional
     public Page<Workspace> getWorkspaces(Long managerId) {
         return mapDtoForPage(workspaceRepository.getListByManagerId(managerId, null));
     }
 
+    // получение рабочих пространств для Customer
+    @Transactional
+    public Page<Workspace> getWorkspacesCustomer() {
+        return mapDtoForPageFromList(workspaceRepository.findAll());
+    }
+
     private Page<Workspace> mapDtoForPage(Page<WorkspaceEntity> workspaces) {
         List<Workspace> workspacedtos = workspaceMapper.workspaceEntityListToWorkspaceList(workspaces.getContent());
         return new PageImpl<>(workspacedtos, workspaces.getPageable(), workspaces.getTotalElements());
+    }
+
+    private Page<Workspace> mapDtoForPageFromList(List<WorkspaceEntity> workspaceEntities) {
+        List<Workspace> workspacedtos = workspaceMapper.workspaceEntityListToWorkspaceList(workspaceEntities);
+        return new PageImpl<>(workspacedtos);
     }
 
     // получение 1 конкретного рп для просмотра и дальнейшей брони
@@ -81,7 +96,7 @@ public class WorkspaceService {
         Workspace workspace = workspaceMapper.workspaceCreateToWorkspace(newWorkspace);
         List<TableEntity> tables = tableMapper.tableListToTableEntityList(workspace.getTables());
         WorkspaceEntity workspaceEntity = workspaceMapper.workspaceToWorkspaceEntity(workspace);
-
+        tables.forEach(table -> table.setWorkspace(workspaceEntity));
         workspaceEntity.setTables(tables);
         workspaceEntity.setManager(manager);
         workspaceRepository.save(workspaceEntity);
@@ -91,5 +106,7 @@ public class WorkspaceService {
     public void deleteWorkspace(Long id) {
         workspaceRepository.myDeleteById(id);
     }
+
+
 
 }
