@@ -25,6 +25,12 @@ public class WorkspaceController {
         return workspaceService.getWorkspaces(id);
     }
 
+    //получение всех рабочих пространств для Customer
+    @GetMapping(value = "workspaceCustomer")
+    public Page<Workspace> getWorkspaceCustomer(){
+        return workspaceService.getWorkspacesCustomer();
+    }
+
     // получение 1 конкретного рп для просмотра и дальнейшей брони
     @GetMapping(value = "workspaceConcrete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Workspace getConcreteWorkspace(@PathVariable("id") Long id){
@@ -32,7 +38,7 @@ public class WorkspaceController {
     }
 
     // получение всех для карты
-    @GetMapping(value = "workspace")
+    @GetMapping(value = "workspace", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Workspace> getAllWorkspace(){
         return workspaceService.getAllWorkspace();
     }

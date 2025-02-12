@@ -22,3 +22,6 @@ Coworking — это приложение для управления брони
 - **MapStruct** для маппинга объектов
 - **Docker** и **Docker Compose** для контейнеризации приложения
 - **JUnit** и **Testcontainers** для тестирования
+- **JUnit** и **Testcontainers** для тестирования
+
+

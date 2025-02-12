@@ -44,4 +44,21 @@ public interface BookingRepository extends JpaRepository<BookingEntity, Long> {
             AND DATE_PART('month', b.date) = :month
             AND DATE_PART('year', b.date) = :year """)
     List<Object[]> getBookingToCalendar(@Param("id") Long id, @Param("month") int month, @Param("year") int year);
+
+    @Query( value = """
+            SELECT b FROM BookingEntity b 
+            JOIN b.customer c 
+            JOIN c.credential cr 
+            JOIN b.table t 
+            JOIN t.workspace w 
+            WHERE cr.id = :id 
+            """)
+    Page<BookingEntity> getMyBookingByCustomerId(@Param("id") Long id, Pageable page);
+
+    @Modifying
+    @Query(nativeQuery = true, value = """
+            DELETE FROM bookings 
+            WHERE id = :id
+            """)
+    void myDeleteById(@Param("id") Long id);
 }
