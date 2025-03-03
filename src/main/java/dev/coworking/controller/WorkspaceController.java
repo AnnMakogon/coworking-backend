@@ -21,7 +21,8 @@ public class WorkspaceController {
 
     // получение рабочих пространств по id manager
     @GetMapping(value = "workspaceManager/{id}")
-    public Page<Workspace> getWorkspaces(@PathVariable("id")  Long id){
+    //todo не секьюрно, менеджер 1 может получить данные менеджера 2 по запросу с другим id, определять текущего менеджера можно по Principal ( в него помимо username можно засунуть id)
+    public Page<Workspace> getWorkspacesByManagerId(@PathVariable("id")  Long id){
         return workspaceService.getWorkspaces(id);
     }
 
@@ -39,7 +40,7 @@ public class WorkspaceController {
 
     // получение всех для карты
     @GetMapping(value = "workspace", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Workspace> getAllWorkspace(){
+    public List<Workspace> getAllWorkspaces(){
         return workspaceService.getAllWorkspace();
     }
 

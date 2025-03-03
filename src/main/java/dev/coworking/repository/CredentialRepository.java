@@ -15,6 +15,7 @@ public interface CredentialRepository extends JpaRepository<CredentialEntity, Lo
             FROM credentials c
             WHERE c.email = :email
             """)
+    //todo где можно используй базовые фетчи
     CredentialEntity findDetailsByEmail(@Param("email") String email);
 
 }

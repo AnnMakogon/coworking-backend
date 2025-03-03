@@ -12,5 +12,6 @@ public interface ManagerRepository extends JpaRepository<ManagerEntity, Long> {
             FROM managers
             where credential_id = :id
             """)
+    //todo использовать jpql без join
     ManagerEntity getManagerByCredential(@Param("id")Long id);
 }

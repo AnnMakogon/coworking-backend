@@ -49,6 +49,7 @@ public class MyIntegrationTest {
         registry.add("spring.datasource.password", postgresContainer::getPassword);
     }
 
+    //
     @Mock
     private BookingMapper bookingMapper;
 

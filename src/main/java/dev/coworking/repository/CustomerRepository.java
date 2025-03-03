@@ -12,5 +12,6 @@ public interface CustomerRepository extends JpaRepository<CustomerEntity, Long> 
             FROM customers
             WHERE credential_id = :id
             """)
+    //todo использовать jpql
     CustomerEntity findByCredentialId(@Param("id") Long id);
 }

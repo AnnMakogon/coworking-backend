@@ -43,16 +43,18 @@ public interface BookingRepository extends JpaRepository<BookingEntity, Long> {
             WHERE t.id = :id  
             AND DATE_PART('month', b.date) = :month
             AND DATE_PART('year', b.date) = :year """)
+    //todo возвращать не Object, а какой-то тип данных
     List<Object[]> getBookingToCalendar(@Param("id") Long id, @Param("month") int month, @Param("year") int year);
 
     @Query( value = """
             SELECT b FROM BookingEntity b 
             JOIN b.customer c 
-            JOIN c.credential cr 
+              JOIN c.credential cr 
             JOIN b.table t 
-            JOIN t.workspace w 
+              JOIN t.workspace w 
             WHERE cr.id = :id 
             """)
+    //todo посмотри разницу между join и join fetch
     Page<BookingEntity> getMyBookingByCustomerId(@Param("id") Long id, Pageable page);
 
     @Modifying
@@ -60,5 +62,6 @@ public interface BookingRepository extends JpaRepository<BookingEntity, Long> {
             DELETE FROM bookings 
             WHERE id = :id
             """)
+    //todo используй стандартные функции
     void myDeleteById(@Param("id") Long id);
 }

@@ -14,6 +14,7 @@ public interface AttachmentMapper {
     String toString(AttachmentEntity attachmentEntity);
 
     @Mapping(target = "id", expression = "java(null)")
+    @Mapping(target = "fileType", constant = "jpeg")
     AttachmentEntity toEntity(Attachment photo);
 
     List<String> listToString(List<AttachmentEntity> attachmentEntities);

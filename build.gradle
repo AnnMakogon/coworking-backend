@@ -58,7 +58,9 @@ dependencies {
 	implementation 'jakarta.servlet:jakarta.servlet-api:6.0.0'
 
 	testImplementation 'org.testcontainers:junit-jupiter:1.17.3'
-	testImplementation 'org.testcontainers:postgresql:1.17.3' // для PostgreSQL
+	testImplementation 'org.testcontainers:postgresql:1.17.3'
+
+	implementation 'io.minio:minio:8.3.0'
 
 }
 

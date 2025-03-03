@@ -20,10 +20,14 @@ public class AttachmentEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "att_seq")
     private Long id;
 
-    private String photo;
+    private String fileName;
+    private String fileType;
+    private String filePath;
 
-    public AttachmentEntity(String photo) {
+    public AttachmentEntity(String fileName, String fileType, String filePath) {
         this.id = null;
-        this.photo = photo;
+        this.fileName = fileName;
+        this.fileType = fileType;
+        this.filePath = filePath;
     }
 }

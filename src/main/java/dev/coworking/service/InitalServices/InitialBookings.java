@@ -15,6 +15,7 @@ import java.time.LocalDate;
 @Transactional
 public class InitialBookings {
 
+    //todo накатывать данные через liquibase
     private final BookingRepository bookingRepository;
 
     @Transactional

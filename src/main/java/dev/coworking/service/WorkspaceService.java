@@ -45,7 +45,9 @@ public class WorkspaceService {
     // получение рабочих пространств по id manager
     @Transactional
     public Page<Workspace> getWorkspaces(Long managerId) {
-        return mapDtoForPage(workspaceRepository.getListByManagerId(managerId, null));
+        return mapDtoForPage(
+                workspaceRepository.getListByManagerId(managerId, null)
+        );
     }
 
     // получение рабочих пространств для Customer
